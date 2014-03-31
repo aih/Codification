@@ -1,0 +1,18 @@
+.dropdown li{
+    margin-left: 12px;
+    margin-bottom: 5px;
+}
+
+#appcolumn1, #appcolumn2, #appcolumn3{
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+}
+
+#editor{
+    height:390px;
+}
+
+.fa-files-o{
+    margin-left: 60px !important;
+}
+

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block main %}
+<!-- Main component for a primary marketing message or call to action -->
+      <div style="margin-top: 60px;">
+          <div class="row">
+              <div class="col-md-3" id="appcolumn1">
+                  <div class="panel panel-info">
+                      <div class="panel-heading">
+                          <h3 class="panel-title">Source Selector</h3>
+                      </div>
+                      <div class="panel-body" style="overflow:hidden">
+                          <div id="jstree_selector_div"></div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-6" id="appcolumn2">
+                  <div class="panel panel-info">
+                      <div class="panel-heading">
+                          <h3 class="panel-title">Section Editor</h3>
+                      </div>
+                      <div class="panel-body">
+                          <div id="editor"><!DOCTYPE html>
+<html lang="en">
+The editor would be embedded here.
+
+</html>
+
+                          </div>
+                      </div>
+                  </div>
+                  <div class="panel panel-success">
+                      <div class="panel-heading">
+                          <h3 class="panel-title">PIS Editor</h3>
+                      </div>
+                      <div class="panel-body">
+                          <div id="pisSpreadsheet"></div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-3" id="appcolumn3">
+                  <div class="panel panel-info">
+                      <div class="panel-heading">
+                          <h3 class="panel-title">Levels</h3>
+                      </div>
+                      <div class="panel-body" style="overflow:hidden">
+                          <div id="jstree_levels_div"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+{% endblock %}
