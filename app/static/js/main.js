@@ -100,25 +100,63 @@ jQuery('#jstree_levels_div').jstree({ 'core' : {
 
 
 function initSpreadsheet(){
-     var data = [
-    ["New USC Citation", "Existing USC Citation", "P.L. Citation", "Disposition", "Explanation", "Recommendation"],
-    ["101101(d)(1)(A) (vi) through (xii)", "15 U.S.C. 631(f)(1)", "P.L. 85–536, § 2[2(f)(1))]", "Restated",],
-    ["101101(d)(1)(A) (vi) through (xii)", "15 U.S.C. 631(f)(1)", "P.L. 85–536, § 2[2(f)(1))]", "Restated",],
-    ["101101(d)(1)(A) (vi) through (xii)", "15 U.S.C. 631(f)(1)", "P.L. 85–536, § 2[2(f)(1))]", "Restated",],
-    ["101101(d)(1)(A) (vi) through (xii)", "15 U.S.C. 631(f)(1)", "P.L. 85–536, § 2[2(f)(1))]", "Restated",],
-    ["101101(d)(1)(A) (vi) through (xii)", "15 U.S.C. 631(f)(1)", "P.L. 85–536, § 2[2(f)(1))]", "Restated",],
-    ["101101(d)(1)(A) (vi) through (xii)", "15 U.S.C. 631(f)(1)", "P.L. 85–536, § 2[2(f)(1))]", "Restated",],
-  ];
-  jQuery("#pisSpreadsheet").handsontable({
-    data: data,
-      rowHeaders: true,
-      manualColumnResize: true,
-      manualColumnMove: true,
-    startRows: 6,
-    startCols: 8
-  });
-  jQuery("#pisSpreadsheet .htCore").addClass('table').addClass('table-striped').addClass('table-hover').addClass('table-condensed');
+    function requiredFieldValidator(value) {
+    if (value == null || value == undefined || !value.length) {
+      return {valid: false, msg: "This is a required field"};
+    } else {
+      return {valid: true, msg: null};
+    }
+  }
 
+  var grid;
+   var mydata = [
+    ["101101(d)(1)(A) (vi) through (xii)", "15 U.S.C. 631(f)(1)", "P.L. 85–536, § 2[2(f)(1))]", "Restated"],
+    ["101101(d)(1)(A) (vi) through (xii)", "15 U.S.C. 631(f)(1)", "P.L. 85–536, § 2[2(f)(1))]", "Restated"],
+    ["101101(d)(1)(A) (vi) through (xii)", "15 U.S.C. 631(f)(1)", "P.L. 85–536, § 2[2(f)(1))]", "Restated"],
+    ["101101(d)(1)(A) (vi) through (xii)", "15 U.S.C. 631(f)(1)", "P.L. 85–536, § 2[2(f)(1))]", "Restated"],
+    ["101101(d)(1)(A) (vi) through (xii)", "15 U.S.C. 631(f)(1)", "P.L. 85–536, § 2[2(f)(1))]", "Restated"],
+    ["101101(d)(1)(A) (vi) through (xii)", "15 U.S.C. 631(f)(1)", "P.L. 85–536, § 2[2(f)(1))]", "Restated"]
+  ];
+   var data = [];
+  var columns = [
+    {id: "newUSCCitation", name: "New USC Citation", field: "newusccitation", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text, validator: requiredFieldValidator},
+    {id: "existingUSCCitation", name: "Existing USC Citation", field: "existingusccitation", width: 100, editor: Slick.Editors.LongText},
+    {id: "P.L. Citation", name: "P.L. Citation", field: "plcitation", editor: Slick.Editors.Text},
+    {id: "Disposition", name: "Disposition", field: "disposition", editor: Slick.Editors.Text},
+    {id: "Explanation", name: "Explanation", field: "explanation", editor: Slick.Editors.Text},
+    {id: "Recommendation", name: "Recommendation", field: "recommendation", editor: Slick.Editors.Text}
+  ];
+  var options = {
+    editable: true,
+    enableAddRow: true,
+    enableCellNavigation: true,
+    asyncEditorLoading: false,
+    autoEdit: true 
+  };
+
+  $(function () {
+    for (var i = 0; i < 5; i++) {
+      var d = (data[i] = {});
+
+      d["newusccitation"] = mydata[i][0];
+      d["existingusccitation"] = mydata[i][1];
+      d["plcitation"] = mydata[i][2];
+      d["disposition"] = mydata[i][3];
+      d["explanation"] = mydata[i][4];
+    }
+
+    grid = new Slick.Grid("#pisSpreadsheet", data, columns, options);
+
+    grid.setSelectionModel(new Slick.CellSelectionModel());
+
+    grid.onAddNewRow.subscribe(function (e, args) {
+      var item = args.item;
+      grid.invalidateRow(data.length);
+      data.push(item);
+      grid.updateRowCount();
+      grid.render();
+    });
+  })
 };
 
 jQuery(function(){
