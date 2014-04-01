@@ -119,19 +119,23 @@ function initSpreadsheet(){
   ];
    var data = [];
   var columns = [
-    {id: "newUSCCitation", name: "New USC Citation", field: "newusccitation", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text, validator: requiredFieldValidator},
-    {id: "existingUSCCitation", name: "Existing USC Citation", field: "existingusccitation", width: 100, editor: Slick.Editors.LongText},
-    {id: "P.L. Citation", name: "P.L. Citation", field: "plcitation", editor: Slick.Editors.Text},
-    {id: "Disposition", name: "Disposition", field: "disposition", editor: Slick.Editors.Text},
-    {id: "Explanation", name: "Explanation", field: "explanation", editor: Slick.Editors.Text},
-    {id: "Recommendation", name: "Recommendation", field: "recommendation", editor: Slick.Editors.Text}
+    {id: "newUSCCitation", name: "New USC Citation", field: "newusccitation", width: 240, cssClass: "cell-title", editor: Slick.Editors.LongText, validator: requiredFieldValidator},
+    {id: "existingUSCCitation", name: "Existing USC Citation", field: "existingusccitation", width: 240, cssClass: "cell-title", editor: Slick.Editors.LongText},
+    {id: "P.L. Citation", name: "P.L. Citation", field: "plcitation",  width: 240, cssClass: "cell-title", editor: Slick.Editors.LongText},
+    {id: "Disposition", name: "Disposition", field: "disposition", width: 80, cssClass: "cell-title", editor: Slick.Editors.Text},
+    {id: "Explanation", name: "Explanation", field: "explanation", width: 200, cssClass: "cell-title", editor: Slick.Editors.LongText},
+    {id: "Recommendation", name: "Recommendation", field: "recommendation",  width: 200, cssClass: "cell-title", editor: Slick.Editors.LongText}
   ];
   var options = {
     editable: true,
     enableAddRow: true,
     enableCellNavigation: true,
+    enableColumnReorder: true,
+    enableTextSelectionOnCells: true,
     asyncEditorLoading: false,
-    autoEdit: true 
+    autoEdit: true,
+    autoHeight: false,
+    syncColumnCellResize: true
   };
 
   $(function () {
